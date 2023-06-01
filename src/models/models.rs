@@ -26,7 +26,9 @@ pub struct UserInputUpdateUser {
     pub email: Option<String>,
 }
 
-#[derive(Queryable,Serialize,Deserialize)]
+#[derive(Queryable,Serialize,Deserialize,Associations,Identifiable)]
+#[diesel(table_name = song)]
+#[diesel(belongs_to(User, foreign_key = user_email))]
 pub struct Song {
     pub id: String,
     pub link: String,

@@ -5,7 +5,7 @@ mod routes;
 mod services;
 
 use routes::index::index;
-use routes::routes::{get_user,create_user,create_song};
+use routes::routes::{get_user,create_user,create_song,get_song,get_one_user};
 
 #[catch(404)]
 fn not_found()->Value{
@@ -25,6 +25,6 @@ fn server_error()->Value{
 
 #[launch]
 fn rocket()->_{
-    rocket::build().mount("/",routes![index,get_user,create_user,create_song])
+    rocket::build().mount("/",routes![index,get_user,create_user,create_song,get_song,get_one_user])
         .register("/", catchers![not_found,server_error])
 }
